@@ -5,7 +5,7 @@ import datetime
 import RPi.GPIO as GPIO
 import time
 
-sections = [23,15,11,13,7,16,18,12] #a,b,c,d,e,f,g,dp
+sections = [23,15,11,13,7,16,3,12] #a,b,c,d,e,f,g,dp
 tubes = [26,24,21,19] #1,2,3,4
 numbers = [
                 '0000001','1001111','0010010','0000110','1001100',
@@ -23,7 +23,7 @@ def setup():
         GPIO.setup(13, GPIO.OUT) #IO21
         GPIO.setup(15, GPIO.OUT) #IO22
         GPIO.setup(16, GPIO.OUT) #IO23
-        GPIO.setup(18, GPIO.OUT) #IO24
+        GPIO.setup(3, GPIO.OUT)  #SDA0
         GPIO.setup(19, GPIO.OUT) #MOSI
         GPIO.setup(21, GPIO.OUT) #MISO
         GPIO.setup(23, GPIO.OUT) #SCLK
@@ -35,7 +35,7 @@ def setup():
         GPIO.output(13, GPIO.HIGH)
         GPIO.output(15, GPIO.HIGH)
         GPIO.output(16, GPIO.HIGH)
-        GPIO.output(18, GPIO.HIGH)
+        GPIO.output(3, GPIO.HIGH)
         GPIO.output(19, GPIO.LOW)
         GPIO.output(21, GPIO.LOW)
         GPIO.output(23, GPIO.HIGH)
