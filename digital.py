@@ -97,15 +97,40 @@ def timeout(s):
         t = time.time()
         return int((t-s)/staytime)%2 > 0
 
+def second():
+	global sec
+	t = time.time()
+	bs =  int(t-sec) > 0
+	if bs:
+		sec = t
+	return bs
+
+
+start = time.time()
+sec  = int(start)
+
 if __name__ == "__main__":
-        start = time.time()
+	countdown = 0
         try:
                 setup()
                 while True:
                         f = file('digital.dat')
                         line = f.readline()
                         f.close()
-                        if len(line) == 0 or timeout(start):
+			fcd = file('countdown.dat', 'rw+')
+			cdstr = fcd.readline()
+			fcd.truncate(0)
+			fcd.close()
+
+			if cdstr is not None and len(cdstr) > 0:
+				print cdstr
+				countdown = string.atoi(cdstr)
+
+			if countdown > 0:
+				setnumber(str(countdown))
+				if (second()):
+					countdown -= 1
+                        elif len(line) == 0 or timeout(start):
                                 showtime()
                         else:
                                 setnumber(line)
